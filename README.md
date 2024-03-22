@@ -1,5 +1,5 @@
 # Programming Language Mrt
-Group Members: ..., ...
+Group Members: Aylin Gül, Ayşenur Dağ, Nigar Selek, Sezen Huddamoğlu
 
 
 ## Syntax

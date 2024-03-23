@@ -47,9 +47,6 @@
 "printf"            { return PRINTF; }
 "scanf"             { return SCANF; }
 
-{id}                { yylval.str = strdup(yytext); return ID; }
-{digit}+            { yylval.num = atoi(yytext); return NUMBER; }
-
 "+"                 { return PLUS; }
 "-"                 { return MINUS; }
 "*"                 { return MULT; }

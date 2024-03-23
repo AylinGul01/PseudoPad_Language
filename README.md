@@ -38,3 +38,70 @@ The Automatic C-code Generator is implemented using the following tools:
 
 Lex: Used for lexical analysis, defining keywords and tokens.
 
+
+##BNF
+
+<program> ::= <declaration_list> <function_list> 'main' '(' ')' '{' <statement_list> '}'
+
+<declaration_list> ::= <declaration> <declaration_list> | ε
+
+<declaration> ::= <type> <identifier> ';'
+                | <type> <identifier> '=' <expression> ';'
+
+<function_list> ::= <function> <function_list> | ε
+
+<function> ::= <type> <identifier> '(' <parameter_list> ')' '{' <statement_list> '}'
+
+<parameter_list> ::= <parameter> ',' <parameter_list> | <parameter> | ε
+
+<parameter> ::= <type> <identifier>
+
+<statement_list> ::= <statement> <statement_list> | ε
+
+<statement> ::= <declaration>
+              | <assignment>
+              | <if_statement>
+              | <while_statement>
+              | <for_statement>
+              | <do_while_statement>
+              | <function_call> ';'
+              | 'return' <expression> ';'
+              | '{' <statement_list> '}'
+
+<assignment> ::= <identifier> '=' <expression> ';'
+
+<if_statement> ::= 'if' '(' <expression> ')' <statement> | 'if' '(' <expression> ')' <statement> 'else' <statement>
+
+<while_statement> ::= 'while' '(' <expression> ')' <statement>
+
+<for_statement> ::= 'for' '(' <assignment> <expression> ';' <expression> ')' <statement>
+
+<do_while_statement> ::= 'do' <statement> 'while' '(' <expression> ')' ';'
+
+<function_call> ::= <identifier> '(' <argument_list> ')'
+
+<argument_list> ::= <expression> ',' <argument_list> | <expression> | ε
+
+<expression> ::= <term> '+' <expression>
+               | <term> '-' <expression>
+               | <term>
+
+<term> ::= <factor> '*' <term>
+         | <factor> '/' <term>
+         | <factor>
+
+<factor> ::= '(' <expression> ')'
+           | <identifier>
+           | <number>
+           | <function_call>
+
+<type> ::= 'int' | 'float' | 'double' | 'char'
+
+<identifier> ::= <letter> {<letter> | <digit>}
+
+<number> ::= <digit> {<digit>}
+
+<letter> ::= 'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
+
+<digit> ::= '0' | '1' | ... | '9'
+

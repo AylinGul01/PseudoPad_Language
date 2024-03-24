@@ -37,14 +37,14 @@ Lex: Used for lexical analysis, defining keywords and tokens.
 
 
 #BNF
+```
+<program> ::= <algorithm> <main> <procedure_list>
 
-  <program> ::= <algorithm> <main> <procedure_list>
+<algorithm> ::= "algorithm" <declaration_list> <statement_list> "end algorithm"
 
-  <algorithm> ::= "algorithm" <declaration_list> <statement_list> "end algorithm"
+<main> ::= "main" <statement_list> "end main"
 
-  <main> ::= "main" <statement_list> "end main"
-
-  <procedure_list> ::= <procedure> <procedure_list> | ε
+<procedure_list> ::= <procedure> <procedure_list> | ε
 
 <procedure> ::= "procedure" IDENTIFIER "(" <param_list> ")" <statement_list> "end procedure"
 
@@ -119,3 +119,4 @@ Lex: Used for lexical analysis, defining keywords and tokens.
 <rel_op> ::= "<" | ">" | "<=" | ">=" | "=" | "!=" | "equal" | "not equal" | "less than" | > | "greater than" | "less equal" | "greater equal"
 
 <logical_op> ::= "&&" | "||" | "and" | "or"
+```

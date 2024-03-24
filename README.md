@@ -1,107 +1,97 @@
-# Programming Language Mrt
-Group Members: Aylin Gül, Ayşenur Dağ, Nigar Selek, Sezen Huddamoğlu
+# Programming Languages Project
+Group Members: Aylin Gül -  20220808614, 
+               Ayşenur Dağ - 20220808620, 
+               Nigar Selek - 20200808068, 
+               Sezen Huddamoğlu - 20200808064
 
 
-## Syntax
+## Explanations about PseudoPad
+Psuedopad is a pseudo code language focused on simplicity and comprehensibility. It is primarily used to express the logic of algorithms and programs. While emphasizing readability and clarity, the language provides programmers with a strong expressive capability. Additionally, Psuedopad reduces code complexity, minimizing the likelihood of errors. This makes the software development process more efficient, allowing successful projects to be completed more quickly.
 
-\<prog\> : \<stmt\> | \<stmts\>
+The sample code we created is designed to take two integer inputs from the user and calculate their sum. It expects two integer inputs from the user, x and y, which are read using scan keyword, and calculates the sum of x and y and assigns it to the sum variable, and then prints the result with print keyword.
 
-\<stmt\> : \<expr\> ...
+## BNF
 
-## Explanations about the language
+```
+<program> ::= <algorithm> <main> <procedure_list>
 
-- Takes a file with extension .mrt
-- Has if, while, ...
+<algorithm> ::= "algorithm" <declaration_list> <statement_list> "end algorithm"
 
-- You can run your program by running the makefile and giving it to myprog as input:
+<main> ::= "main" <statement_list> "end main"
 
-make
-./myprog < example.mrt
+<procedure_list> ::= <procedure> <procedure_list> | ε
 
+<procedure> ::= "procedure" IDENTIFIER "(" <param_list> ")" <statement_list> "end procedure"
 
+<param_list> ::= IDENTIFIER <param_list_tail> | ε
 
-Automatic C-code Generator
-The Automatic C-code Generator is a tool that converts algorithms or pseudocode into corresponding C code. This tool is designed to help programmers and students quickly generate C code from a given set of instructions or algorithmic steps.
-
-Functionalities
-The Automatic C-code Generator supports the following functionalities:
-
-Declaring and Initializing Variables: Variables can be declared and initialized as per the requirements of the algorithm.
-Variable Usage: Variables can only be used if they have been declared.
-Operations: Supports arithmetic, logical, assignment, and relational operations.
-Input/Output: Provides the ability to read input from the user and print output.
-Conditional Statements: Supports if-else and switch-case statements for conditional execution of code.
-Looping Statements: Supports while, for, and do-while loops for iterative execution of code.
-Functions and Procedures: Allows the definition and usage of functions and procedures.
-Tools Used
-The Automatic C-code Generator is implemented using the following tools:
-
-Lex: Used for lexical analysis, defining keywords and tokens.
-
-
-##BNF
-
-<program> ::= <declaration_list> <function_list> 'main' '(' ')' '{' <statement_list> '}'
+<param_list_tail> ::= "," IDENTIFIER <param_list_tail> | ε
 
 <declaration_list> ::= <declaration> <declaration_list> | ε
 
-<declaration> ::= <type> <identifier> ';'
-                | <type> <identifier> '=' <expression> ';'
+<declaration> ::= <type> IDENTIFIER <init> ";"
 
-<function_list> ::= <function> <function_list> | ε
+<type> ::= "int" | "float" | "string" | "bool"
 
-<function> ::= <type> <identifier> '(' <parameter_list> ')' '{' <statement_list> '}'
-
-<parameter_list> ::= <parameter> ',' <parameter_list> | <parameter> | ε
-
-<parameter> ::= <type> <identifier>
+<init> ::= "=" <expression> | ε
 
 <statement_list> ::= <statement> <statement_list> | ε
 
-<statement> ::= <declaration>
-              | <assignment>
-              | <if_statement>
-              | <while_statement>
-              | <for_statement>
-              | <do_while_statement>
-              | <function_call> ';'
-              | 'return' <expression> ';'
-              | '{' <statement_list> '}'
+<statement> ::= <assignment> | <if_statement> | <while_statement> | <for_statement> | <repeat_statement> | <switch_statement> | <break_statement> | <continue_statement> | <return_statement> | <print_statement> | <scan_statement> | <procedure_call>
 
-<assignment> ::= <identifier> '=' <expression> ';'
+<assignment> ::= IDENTIFIER "=" <expression> ";"
 
-<if_statement> ::= 'if' '(' <expression> ')' <statement> | 'if' '(' <expression> ')' <statement> 'else' <statement>
+<if_statement> ::= "if" "(" <expression> ")" <statement_list> <elseif_list> <else_part> "end if"
 
-<while_statement> ::= 'while' '(' <expression> ')' <statement>
+<elseif_list> ::= "elseif" "(" <expression> ")" <statement_list> <elseif_list> | ε
 
-<for_statement> ::= 'for' '(' <assignment> <expression> ';' <expression> ')' <statement>
+<else_part> ::= "else" <statement_list> | ε
 
-<do_while_statement> ::= 'do' <statement> 'while' '(' <expression> ')' ';'
+<while_statement> ::= "while" "(" <expression> ")" <statement_list> "end while"
 
-<function_call> ::= <identifier> '(' <argument_list> ')'
+<for_statement> ::= "for" IDENTIFIER "=" <expression> "to" <expression> "do" <statement_list> "end for"
 
-<argument_list> ::= <expression> ',' <argument_list> | <expression> | ε
+<repeat_statement> ::= "repeat" <statement_list> "until" "(" <expression> ")"
 
-<expression> ::= <term> '+' <expression>
-               | <term> '-' <expression>
-               | <term>
+<switch_statement> ::= "switch" "(" <expression> ")" <case_list> <default_case> "end switch"
 
-<term> ::= <factor> '*' <term>
-         | <factor> '/' <term>
-         | <factor>
+<case_list> ::= "case" <expression> ":" <statement_list> <case_list> | ε
 
-<factor> ::= '(' <expression> ')'
-           | <identifier>
-           | <number>
-           | <function_call>
+<default_case> ::= "default" ":" <statement_list> | ε
 
-<type> ::= 'int' | 'float' | 'double' | 'char'
+<break_statement> ::= "break" ";"
 
-<identifier> ::= <letter> {<letter> | <digit>}
+<continue_statement> ::= "continue" ";"
 
-<number> ::= <digit> {<digit>}
+<return_statement> ::= "return" <expression> ";"
 
-<letter> ::= 'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
+<print_statement> ::= "print" "(" <expression> ")" ";"
 
-<digit> ::= '0' | '1' | ... | '9'
+<scan_statement> ::= "scan" "(" IDENTIFIER ")" ";"
 
+<procedure_call> ::= IDENTIFIER "(" <arg_list> ")" ";"
+
+<arg_list> ::= <expression> <arg_list_tail> | ε
+
+<arg_list_tail> ::= "," <expression> <arg_list_tail> | ε
+
+<expression> ::= <term> <expression_tail>
+
+<expression_tail> ::= <rel_op> <term> <expression_tail> | <logical_op> <term> <expression_tail> | ε
+
+<term> ::= <factor> <term_tail>
+
+<term_tail> ::= <mult_op> <factor> <term_tail> | ε
+
+<factor> ::= "(" <expression> ")" | IDENTIFIER | INTEGER | FLOAT | STRING | BOOLEAN | <unary_op> <factor>
+
+<add_op> ::= "+" | "-" | "plus" | "minus" 
+
+<mult_op> ::= "*" | "/" | "multiply" | "divide"
+
+<unary_op> ::= "!" | "not" | "->" | "assign"
+
+<rel_op> ::= "<" | ">" | "<=" | ">=" | "=" | "!=" | "equal" | "not equal" | "less than" | > | "greater than" | "less equal" | "greater equal"
+
+<logical_op> ::= "&&" | "||" | "and" | "or"
+```

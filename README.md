@@ -8,6 +8,7 @@ Group Members: Aylin Gül -  20220808614,
 ## Explanations about PseudoPad
 Psuedopad is a pseudo code language focused on simplicity and comprehensibility. It is primarily used to express the logic of algorithms and programs. While emphasizing readability and clarity, the language provides programmers with a strong expressive capability. Additionally, Psuedopad reduces code complexity, minimizing the likelihood of errors. This makes the software development process more efficient, allowing successful projects to be completed more quickly.
 
+The sample code we created is designed to take two integer inputs from the user and calculate their sum. It expects two integer inputs from the user, x and y, which are read using scan keyword, and calculates the sum of x and y and assigns it to the sum variable, and then prints the result with print keyword.
 
 ## BNF
 

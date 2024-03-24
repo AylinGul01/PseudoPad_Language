@@ -1,7 +1,9 @@
-Pseudopad: PseudoPad.l
-	   lex PseudoPad.l
-	   gcc -o PseudoPad lex.yy.c -ll
+pseudopad: pseudopad.l
+	lex pseudopad.l
+	gcc -o pseudopad lex.yy.c 
 
-clean:    
-	rm PseudoPad lex.yy.c
-	
+run: 
+	./pseudopad
+
+clean:
+	rm pseudopad lex.yy.c

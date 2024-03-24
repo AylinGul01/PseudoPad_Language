@@ -1,11 +1,11 @@
-#Programming Languages Project
+##Programming Languages Project
 Group Members: Aylin Gül -  20220808614, 
                Ayşenur Dağ - 20220808620, 
                Nigar Selek - 20200808068, 
                Sezen Huddamoğlu - 20200808064
 
 
-#Explanations about PseudoPad
+##Explanations about PseudoPad
 Psuedopad is a pseudo code language focused on simplicity and comprehensibility. It is primarily used to express the logic of algorithms and programs. While emphasizing readability and clarity, the language provides programmers with a strong expressive capability. Additionally, Psuedopad reduces code complexity, minimizing the likelihood of errors. This makes the software development process more efficient, allowing successful projects to be completed more quickly.
 
 

@@ -4,13 +4,13 @@ Group Members: Aylin Gül, Ayşenur Dağ, Nigar Selek, Sezen Huddamoğlu
 
 # Explanations about the language
 
-- Takes a file with extension .mrt
+- Takes a file with extension .nasa
 - Has if, while, ...
 
 - You can run your program by running the makefile and giving it to myprog as input:
 
 make
-./myprog < example.mrt
+./myprog < example.nasa
 
 
 

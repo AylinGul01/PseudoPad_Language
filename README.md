@@ -1,16 +1,19 @@
 # Programming Languages
-Group Members: Aylin Gül, Ayşenur Dağ, Nigar Selek, Sezen Huddamoğlu
+Group Members: Aylin Gül -  20220808614
+              Ayşenur Dağ - 20220808620
+              Nigar Selek - 20200808068
+              Sezen Huddamoğlu - 20200808064
 
 
 # Explanations about the language
 
-- Takes a file with extension .nasa
+- Takes a file with extension .mrt
 - Has if, while, ...
 
 - You can run your program by running the makefile and giving it to myprog as input:
 
 make
-./myprog < example.nasa
+./myprog < example.mrt
 
 
 
@@ -115,4 +118,4 @@ Lex: Used for lexical analysis, defining keywords and tokens.
 
 <rel_op> ::= "<" | ">" | "<=" | ">=" | "=" | "!=" | "equal" | "not equal" | "less than" | > | "greater than" | "less equal" | "greater equal"
 
-<logical_op> ::= "&&" | "||" | "and" | "or" 
+<logical_op> ::= "&&" | "||" | "and" | "or"

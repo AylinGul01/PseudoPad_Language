@@ -33,7 +33,6 @@ The Automatic C-code Generator is implemented using the following tools:
 Lex: Used for lexical analysis, defining keywords and tokens.
 
 
-
 #BNF
 
 <program> ::= <algorithm> <main> <procedure_list>
@@ -112,8 +111,8 @@ Lex: Used for lexical analysis, defining keywords and tokens.
 
 <mult_op> ::= "*" | "/" | "multiply" | "divide"
 
-<unary_op> ::=  "!" | "not" | "->" | "assign"
+<unary_op> ::= "!" | "not" | "->" | "assign"
 
 <rel_op> ::= "<" | ">" | "<=" | ">=" | "=" | "!=" | "equal" | "not equal" | "less than" | > | "greater than" | "less equal" | "greater equal"
 
-<logical_op> ::= "&&" | "||" | "and" | "or"
+<logical_op> ::= "&&" | "||" | "and" | "or" 

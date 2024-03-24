@@ -1,6 +1,7 @@
-myprog: myprog.l
-	lex myprog.l
-	gcc -o myprog lex.yy.c -ll
+Pseudopad: Pseudopad.l
+	   lex Pseudopad.l
+	   gcc -o Pseudopad lex.yy.c -ll
 
-clean:
-	rm myprog lex.yy.c
+clean:    
+	rm Pseudopad lex.yy.c
+	

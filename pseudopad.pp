@@ -1,3 +1,4 @@
+//ExampleProgram
 algorithm TestProgram
     input: x, y
     output: sum

@@ -51,4 +51,6 @@
 #define STRING           51
 #define BOOLEAN          52
 #define IDENTIFIER       53
+#define FUNC             54
+#define COMMENT          55
 

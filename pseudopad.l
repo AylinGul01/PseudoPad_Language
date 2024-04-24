@@ -1,82 +1,103 @@
+text (\"[^\"]*\")
+character (\'[^\']\')
+integer ([-+]?[0-9]+)
+float ([-+]?[0-9]*(\.)?[0-9]+)
+boolean (true|false)
+IO (writeFile|readFile)
 
-%{
-#include <stdio.h>
-#include <string.h>
-#include "pseudopad.h"
-%}
+INT_TYPE int
+FLOAT_TYPE float
+STRING_TYPE text
+BOOLEAN_TYPE flag
+CHAR_TYPE char
+final const
+
+func func
+void empty
+
+comment  \(\*(.|\n)*?\*\)
+
+var [a-zA-Z_$][a-zA-Z0-9_'$]*
+
+%%
+\+                      printf(" PLUS ");
+plus                    printf(" PLUS ");
+\-                      printf(" MINUS ");
+MINUS                   printf(" MINUS ");
+\*                      printf(" MULT ");
+multiply                printf(" MULT ");
+\/                      printf(" DIV ");
+divide                  printf(" DIV ");
+{integer}               printf(" INTEGER ");
+{float}                 printf(" FLOAT ");
+{text}                  printf(" STRING "); 
+{character}             printf(" CHARACTER "); 
+{boolean}               printf(" BOOLEAN "); 
+{INT_TYPE}              printf(" INT_TYPE ");
+{FLOAT_TYPE}            printf(" FLOAT_TYPE ");
+{STRING_TYPE}           printf(" STRING_TYPE ");
+{BOOLEAN_TYPE}          printf(" BOOLEAN_TYPE ");
+{CHAR_TYPE}             printf(" CHAR_TYPE ");
+{final}                 printf(" CONSTANT ");
+{func}                  printf(" FUNC ");
+{void}                  printf(" VOID_TYPE ");
+return                  printf(" RETURN ");
+or                      printf(" OR ");
+and                     printf(" AND");
+\=                      printf(" EQUAL ");
+equal                   printf(" EQUAL ");
+\!\=                    printf(" NOTEQUAL ");
+notequal                printf(" NOTEQUAL ");
+\=\>                    printf(" ASSIGN");
+assign                  printf(" ASSIGN");
+\>                      printf(" GREATER ");
+greater                 printf(" GREATER ");
+\<                      printf(" SMALLER ");
+smaller                 printf(" SMALLER ");
+\>=                     printf(" GREATEREQUAL ");
+greaterequal            printf(" GREATEREQUAL ");
+\<=                     printf(" LESSEQUAL ");
+lessequal               printf(" LESSEQUAL ");
+\!                      printf(" NOT ");
+not                     printf(" NOT ");
+algorithm               printf(" ALGORITHM ");
+endalgorithm            printf(" ENDALGORITHM ");
+if                      printf(" IF ");
+endif                   printf(" ENDIF "); 
+do                      printf(" DO "); 
+to                      printf(" TO ");
+then                    printf(" THEN ");
+else                    printf(" ELSE ");
+elif                    printf(" ELSEIF ");
+for                     printf(" FOR ");
+endfor                  printf(" FOR ");
+while                   printf(" WHILE ");
+endwhile                printf(" ENDWHILE "); 
+repeat                  printf(" REPEAT ");
+until                   printf(" UNTIL ");
+switch                  printf(" SWITCH ");                   
+case                    printf(" CASE ");
+default                 printf(" DEFAULT ");
+endswitch               printf(" ENDSWITCH ");
+break                   printf(" BREAK ");
+continue                printf(" CONTINUE ");
+procedure               printf(" PROCEDURE ");  
+endprocedure            printf(" ENDPROCEDURE ");             
+{comment}               printf(" COMMENT ");
+print                   printf(" PRINT ");
+FINISH                  printf(" FINISH_PROG ");
+\(                      printf(" LPAREN ");
+\)                      printf(" RPAREN ");
+\;                      printf(" SEMICOLON ");
+\,                      printf(" COMMA ");
+{var}                   printf(" VARIABLE ");
+[ \t]                   /* Ignore whitespace */
+.                       printf(" Syntax Error! ");
 
 %%
 
-"algorithm"          { printf("ALGORITHM "); return ALGORITHM; }
-"end algorithm"      { printf("ENDAALGORITHM "); return ENDAALGORITHM; } 
-"input"              { printf("INPUT "); return INPUT; }
-"output"             { printf("OUTPUT "); return OUTPUT; }
-"if"                 { printf("IF "); return IF; } 
-"then"               { printf("THEN "); return THEN; } 
-"else"               { printf("ELSE "); return ELSE; }
-"elseif"             { printf("ELSEIF "); return ELSEIF; }
-"end if"             { printf("ENDIF "); return ENDIF; }
-"while"              { printf("WHILE "); return WHILE; }
-"do"                 { printf("DO "); return DO; } 
-"end while"          { printf("ENDWHILE "); return ENDWHILE; }
-"for"                { printf("FOR "); return FOR; }
-"to"                 { printf("TO "); return TO; } 
-"end for"            { printf("ENDFOR "); return ENDFOR; }
-"repeat"             { printf("REPEAT "); return REPEAT; }
-"until"              { printf("UNTIL "); return UNTIL; }
-"switch"             { printf("SWITCH "); return SWITCH; }
-"case"               { printf("CASE "); return CASE; }
-"default"            { printf("DEFAULT "); return DEFAULT; }
-"end switch"         { printf("ENDSWITCH "); return ENDSWITCH; } 
-"break"              { printf("BREAK "); return BREAK; }
-"continue"           { printf("CONTINUE "); return CONTINUE; }
-"procedure"          { printf("PROCEDURE "); return PROCEDURE; }
-"end procedure"      { printf("ENDPROCEDURE "); return ENDPROCEDURE; }
-"return"             { printf("RETURN "); return RETURN; }
-"void"               { printf("VOID "); return VOID; }
-"main"               { printf("MAIN "); return MAIN; }
-"print"              { printf("PRINT "); return PRINT; }
-"scan"               { printf("SCAN "); return SCAN; }
-"+"                  { printf("PLUS "); return PLUS; }
-"-"                  { printf("MINUS "); return MINUS; }
-"*"                  { printf("MULT "); return MULT; }
-"/"                  { printf("DIV "); return DIV; }
-"->"                 { printf("ASSIGN "); return ASSIGN; }
-"="                  { printf("EQUAL "); return EQUAL; }
-"!="                 { printf("NOTEQUAL "); return NOTEQUAL; }
-"<"                  { printf("LESS "); return LESS; }
-">"                  { printf("GREATER "); return GREATER; }
-"<="                 { printf("LESSEQUAL "); return LESSEQUAL; }
-">="                 { printf("GREATEREQUAL "); return GREATEREQUAL; }
-"&&"                 { printf("AND "); return AND; }
-"||"                 { printf("OR "); return OR; }
-"!"                  { printf("NOT "); return NOT; }
-"("                  { printf("LPAREN "); return LPAREN; }
-")"                  { printf("RPAREN "); return RPAREN; }
-";"                  { printf("SEMICOLON "); return SEMICOLON; }
-","                  { printf("COMMA "); return COMMA; }
-[0-9]+               { printf("INTEGER "); return INTEGER; }
-[0-9]+"."[0-9]+      { printf("FLOAT "); return FLOAT; }
-\"[^\"]*\"           { printf("STRING "); return STRING; }
-"true"|"false"       { printf("BOOLEAN "); return BOOLEAN; }
-[a-zA-Z_][a-zA-Z0-9_]* { printf("IDENTIFIER "); return IDENTIFIER; }
-"\n"                 { /* ignore newlines */ }
-[ \t]                { /* ignore whitespace */ }
-.                    { /* catch all other characters */ }
 
-%%
-
-int yywrap () {
+int yywrap (void)
+{
     return 1;
 }
-
-int main() {
-    int token;
-    
-    do {
-        token = yylex();
-    } while (token != 0);
-
-    return 0;
-}
-

@@ -46,8 +46,8 @@
 #define RPAREN           46
 #define SEMICOLON        47
 #define COMMA            48
-#define INTEGER          49
-#define FLOAT            50
+#define NUMBER           49
+#define VARIABLE         50
 #define STRING           51
 #define BOOLEAN          52
 #define IDENTIFIER       53
